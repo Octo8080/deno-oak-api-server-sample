@@ -1,0 +1,4 @@
+.vscode
+.env
+db/data.db
+log/*.log

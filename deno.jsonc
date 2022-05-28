@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net=0.0.0.0:8080 --allow-write=./db/data.db,./db/data.db-journal,./log --allow-read=./db/data.db,./db/data.db-journal,.env,.env.defaults,./log --allow-env=BASIC_SECRET,SALT,DATA_BASE_FILE,LOG_FILE,NODE_DEBUG --unstable app.ts",
+    "db-create": "deno run --allow-write=./db/data.db,./db/data.db-journal --allow-read=./db/data.db,./db/data.db-journal,.env,.env.defaults --allow-env=BASIC_SECRET,SALT,DATA_BASE_FILE,LOG_FILE,NODE_DEBUG --unstable create_db.ts",
+    "db-migrate": "deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate",
+    "db-rollback": "deno run -A --unstable https://deno.land/x/nessie/cli.ts rollback",
+    "add-client": "deno run -A --unstable cli.ts"
+  }
+}
