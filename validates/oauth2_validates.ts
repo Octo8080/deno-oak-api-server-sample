@@ -19,7 +19,7 @@ type Oauth2RequestCheckResult =
   | Oauth2RequestCheckResultSuccess;
 
 export async function accessResourceRequestCheck(
-  req: Request
+  req: Request,
 ): Promise<Oauth2RequestCheckResult> {
   const auth = req.headers.get("authorization");
   if (!auth) return { status: false };
@@ -38,7 +38,7 @@ export async function accessResourceRequestCheck(
 }
 
 export async function accessTokenRequestCheck(
-  req: Request
+  req: Request,
 ): Promise<Oauth2RequestCheckResult> {
   const value = await req.body({ type: "form" }).value;
   const clientId = (await value).get("client_id");

@@ -1,7 +1,7 @@
 import { Application } from "./deps.ts";
 import { router } from "./routes/routes.ts";
 import { doClose } from "./db/db_client.ts";
-import { beforeAccessLog } from './middleweres/requets_logger.ts';
+import { beforeAccessLog } from "./middleweres/requets_logger.ts";
 
 const app = new Application();
 

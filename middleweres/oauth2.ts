@@ -6,7 +6,7 @@ export async function beforeResourceAccess(
   context: Context,
   next: () => Promise<unknown>,
 ) {
-  const copyRequest = Object.assign(context.request)
+  const copyRequest = Object.assign(context.request);
   const result = await accessResourceRequestCheck(copyRequest);
   if (!result.status) {
     logError("Invalid Access !!");

@@ -1,7 +1,7 @@
 # deno-oak-api-server-sample
 
-This Code is api server on 'Deno'. 
-This api server use [oak](https://github.com/oakserver/oak) middleware framework.
+This Code is api server on 'Deno'.   
+This api server use[oak](https://github.com/oakserver/oak) middleware framework.
 
 # Usage
 
@@ -13,6 +13,7 @@ SALT = [ Salt used when hashing]
 DATA_BASE_FILE = [Database filename]
 LOG_FILE = [Log filename]
 ```
+
 ## Execution
 
 ```sh

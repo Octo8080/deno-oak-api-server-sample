@@ -51,4 +51,4 @@ function getDbClient(): Database {
 async function doClose() {
   await db.close();
 }
-export { Client, doClose, getDbClient, Token, Post };
+export { Client, doClose, getDbClient, Post, Token };
