@@ -1,13 +1,10 @@
-import { Context } from "../deps.ts";
+import { Context, isAuthSuccess } from "../middleweres/oauth2.ts"
 import {
   tryDeletePost,
   tryGetPosts,
   tryInsertPost,
 } from "../repositories/posts.ts";
-import { tryGetToken } from "../repositories/token.ts";
 import { logError } from "../util/logger.ts";
-import { createHashString } from "../util/hash.ts";
-import { getBearerToken } from "../util/request.ts";
 
 export async function posts(context: Context) {
   try {
@@ -31,17 +28,9 @@ export async function newPost(context: Context) {
     return;
   }
 
-  const result = getBearerToken(context);
-  if (!result.status) {
-    context.response.status = 400;
-    return;
-  }
-
-  const hashedToken = createHashString(result.token);
-
   try {
-    const client = await tryGetToken(hashedToken);
-    const posts = await tryInsertPost(client.clientId, value.text);
+    if(!isAuthSuccess(context.auth)) throw new Error("Not Auth")
+    const posts = await tryInsertPost(context.auth.clientId, value.text);
     if (!posts) {
       context.response.status = 400;
       return;
@@ -65,17 +54,9 @@ export async function deletePost(context: Context) {
     return;
   }
 
-  const result = getBearerToken(context);
-  if (!result.status) {
-    context.response.status = 400;
-    return;
-  }
-
-  const hashedToken = createHashString(result.token);
-
   try {
-    const client = await tryGetToken(hashedToken);
-    const result = await tryDeletePost(client.clientId, value.id);
+    if(!isAuthSuccess(context.auth)) throw new Error("Not Auth")
+    const result = await tryDeletePost(context.auth.clientId, value.id);
     if (!result) {
       context.response.status = 400;
       return;
