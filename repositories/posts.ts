@@ -9,6 +9,7 @@ interface PostObject {
 }
 
 function isPost(rawArg: unknown): rawArg is PostObject {
+  if (!rawArg) return false;
   const arg = rawArg as { [key: string]: unknown };
   if (arg.clientId === undefined) return false;
   if (typeof arg.clientId !== "string") return false;
@@ -23,6 +24,7 @@ function isPost(rawArg: unknown): rawArg is PostObject {
 }
 
 function isPosts(rawArg: unknown): rawArg is PostObject[] {
+  if (!rawArg) return false;
   if (!Array.isArray(rawArg)) return false;
   if (!rawArg.every(isPost)) return false;
   return true;

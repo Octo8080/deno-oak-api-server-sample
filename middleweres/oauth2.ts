@@ -17,20 +17,20 @@ export type Context = OakContext & {
   auth?: Auth;
 };
 
-export function isAuthSuccess(rawArg:unknown): rawArg is AuthSuccess{
-  const arg = rawArg as {[key:string]:unknown}
+export function isAuthSuccess(rawArg: unknown): rawArg is AuthSuccess {
+  if (!rawArg) return false;
 
-  if(!arg) return false
-  if(!arg.status ) return false
-  if(typeof arg.status !== "boolean")  return false
-  if(arg.status !== true)  return false
+  const arg = rawArg as { [key: string]: unknown };
+  if (!arg.status) return false;
+  if (typeof arg.status !== "boolean") return false;
+  if (arg.status !== true) return false;
 
-  return true
+  return true;
 }
 
 export async function beforeResourceAccess(
   context: Context,
-  next: () => Promise<unknown>
+  next: () => Promise<unknown>,
 ) {
   const copyRequest = Object.assign(context.request);
   const result = await accessResourceRequestCheck(copyRequest);

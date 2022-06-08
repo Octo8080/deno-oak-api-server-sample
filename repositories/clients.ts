@@ -8,6 +8,7 @@ interface ClientObject {
 }
 
 function isClient(rawArg: unknown): rawArg is ClientObject {
+  if (!rawArg) return false;
   const arg = rawArg as { [key: string]: unknown };
   if (arg.clientId === undefined) return false;
   if (typeof arg.clientId !== "string") return false;
