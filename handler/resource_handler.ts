@@ -1,4 +1,4 @@
-import { Context, isAuthSuccess } from "../middleweres/oauth2.ts"
+import { Context, isAuthSuccess } from "../middleweres/oauth2.ts";
 import {
   tryDeletePost,
   tryGetPosts,
@@ -29,7 +29,7 @@ export async function newPost(context: Context) {
   }
 
   try {
-    if(!isAuthSuccess(context.auth)) throw new Error("Not Auth")
+    if (!isAuthSuccess(context.auth)) throw new Error("Not Auth");
     const posts = await tryInsertPost(context.auth.clientId, value.text);
     if (!posts) {
       context.response.status = 400;
@@ -55,7 +55,7 @@ export async function deletePost(context: Context) {
   }
 
   try {
-    if(!isAuthSuccess(context.auth)) throw new Error("Not Auth")
+    if (!isAuthSuccess(context.auth)) throw new Error("Not Auth");
     const result = await tryDeletePost(context.auth.clientId, value.id);
     if (!result) {
       context.response.status = 400;

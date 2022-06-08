@@ -10,6 +10,7 @@ interface TokenObject {
 }
 
 function isToken(rawArg: unknown): rawArg is TokenObject {
+  if (!rawArg) return false;
   const arg = rawArg as { [key: string]: unknown };
   if (arg.clientId === undefined) return false;
   if (typeof arg.clientId !== "string") return false;
