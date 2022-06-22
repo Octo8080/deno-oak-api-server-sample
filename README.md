@@ -1,7 +1,7 @@
 # deno-oak-api-server-sample
 
 This code is api server on 'Deno'.\
-This api server use[oak](https://github.com/oakserver/oak) middleware framework.
+This api server use [oak](https://github.com/oakserver/oak) middleware framework.
 
 # Usage
 
